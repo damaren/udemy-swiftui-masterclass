@@ -21,40 +21,74 @@ struct SettingsView: View {
                 
                 Form {
                     // MARK: - SECTION 1
+                    
                     Section(header: Text("Choose the app icon"), content: {
-                        Picker(selection: $iconSettings.currentIndex, content:{
-                            ForEach(0..<iconSettings.iconNames.count, id: \.self) { index in
-                                ColorPickerContentView(iconName: self.iconSettings.iconNames[index] ?? "Blue")
-                            }
+                        Menu(content: {
+                            Picker("App Icons", selection: $iconSettings.currentIndex, content: {
+                                ForEach(0..<iconSettings.iconNames.count, id: \.self) { index in
+                                    ColorPickerContentView(iconName: self.iconSettings.iconNames[index] ?? "Blue")
+                                }
+                            })
+                            .onReceive([self.iconSettings.currentIndex].publisher.first(), perform: { value in
+                                let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0
+                                if index != value {
+                                    UIApplication.shared.setAlternateIconName(self.iconSettings.iconNames[value]) { error in
+                                        if let error = error {
+                                            print(error.localizedDescription)
+                                        } else {
+                                            print("Successs! You have changed the app icon.")
+                                        }
+                                    }
+                                }
+                            })
                         }, label: {
                             HStack {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                        .strokeBorder(Color.primary, lineWidth: 2)
-                                    
-                                    Image(systemName: "paintbrush")
-                                        .font(.system(size: 28, weight: .regular, design: .default))
-                                    .foregroundColor(.primary)
-                                }
-                                .frame(width: 44, height: 44)
+                                Image(uiImage: UIImage(named: self.iconSettings.iconNames[iconSettings.currentIndex] ?? "Blue") ?? UIImage())
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 44, height: 44)
+                                    .cornerRadius(8)
                                 
                                 Text("App Icons".uppercased())
                                     .fontWeight(.bold)
                                     .foregroundColor(.primary)
                             }
-                        }) //: PICKER
-                        .onReceive([self.iconSettings.currentIndex].publisher.first(), perform: { value in
-                            let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0
-                            if index != value {
-                                UIApplication.shared.setAlternateIconName(self.iconSettings.iconNames[value]) { error in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                    } else {
-                                        print("Successs! You have changed the app icon.")
-                                    }
-                                }
-                            }
                         })
+//                        Picker(selection: $iconSettings.currentIndex, content: {
+////                            ForEach(0..<iconSettings.iconNames.count, id: \.self) { index in
+////                                ColorPickerContentView(iconName: self.iconSettings.iconNames[index] ?? "Blue")
+////                            }
+//                            ColorPickerContentView(iconName: self.iconSettings.iconNames[0] ?? "Blue")
+//                        }, label: {
+//                            HStack {
+//                                ZStack {
+//                                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                                        .strokeBorder(Color.primary, lineWidth: 2)
+//
+//                                    Image(systemName: "paintbrush")
+//                                        .font(.system(size: 28, weight: .regular, design: .default))
+//                                    .foregroundColor(.primary)
+//                                }
+//                                .frame(width: 44, height: 44)
+//
+//                                Text("App Icons".uppercased())
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(.primary)
+//                            }
+//                        }) //: PICKER
+//                        .onReceive([self.iconSettings.currentIndex].publisher.first(), perform: { value in
+//                            let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0
+//                            if index != value {
+//                                UIApplication.shared.setAlternateIconName(self.iconSettings.iconNames[value]) { error in
+//                                    if let error = error {
+//                                        print(error.localizedDescription)
+//                                    } else {
+//                                        print("Successs! You have changed the app icon.")
+//                                    }
+//                                }
+//                            }
+//                        })
                     }) //: SECTION 1
                     .padding(.vertical, 3)
                     

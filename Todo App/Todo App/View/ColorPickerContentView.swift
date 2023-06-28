@@ -17,6 +17,7 @@ struct ColorPickerContentView: View {
                 .renderingMode(.original)
                 .resizable()
                 .scaledToFit()
+                .frame(width: 44, height: 44)
                 .cornerRadius(8)
             
             Spacer().frame(width: 8)
@@ -24,12 +25,11 @@ struct ColorPickerContentView: View {
             Text(iconName)
                 .frame(alignment: .leading)
         } //: HSTACK
-        .frame(height: 44)
     }
 }
 
 struct ColorPickerContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorPickerContentView(iconName: "Blue Dark")
+        ColorPickerContentView(iconName: "Blue")
     }
 }
