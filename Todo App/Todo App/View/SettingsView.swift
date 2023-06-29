@@ -13,6 +13,11 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var iconSettings: IconNames
     
+    // THEME
+    
+    let themes: [Theme] = themeData
+    @ObservedObject var theme = ThemeSettings.shared
+    
     // MARK: - BODY
     var body: some View {
         NavigationView {
@@ -55,41 +60,35 @@ struct SettingsView: View {
                                     .foregroundColor(.primary)
                             }
                         })
-//                        Picker(selection: $iconSettings.currentIndex, content: {
-////                            ForEach(0..<iconSettings.iconNames.count, id: \.self) { index in
-////                                ColorPickerContentView(iconName: self.iconSettings.iconNames[index] ?? "Blue")
-////                            }
-//                            ColorPickerContentView(iconName: self.iconSettings.iconNames[0] ?? "Blue")
-//                        }, label: {
-//                            HStack {
-//                                ZStack {
-//                                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-//                                        .strokeBorder(Color.primary, lineWidth: 2)
-//
-//                                    Image(systemName: "paintbrush")
-//                                        .font(.system(size: 28, weight: .regular, design: .default))
-//                                    .foregroundColor(.primary)
-//                                }
-//                                .frame(width: 44, height: 44)
-//
-//                                Text("App Icons".uppercased())
-//                                    .fontWeight(.bold)
-//                                    .foregroundColor(.primary)
-//                            }
-//                        }) //: PICKER
-//                        .onReceive([self.iconSettings.currentIndex].publisher.first(), perform: { value in
-//                            let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0
-//                            if index != value {
-//                                UIApplication.shared.setAlternateIconName(self.iconSettings.iconNames[value]) { error in
-//                                    if let error = error {
-//                                        print(error.localizedDescription)
-//                                    } else {
-//                                        print("Successs! You have changed the app icon.")
-//                                    }
-//                                }
-//                            }
-//                        })
                     }) //: SECTION 1
+                    .padding(.vertical, 3)
+                    
+                    // MARK: - SECTION 2
+                    Section(header:
+                        HStack {
+                            Text("Choose the app theme")
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                                .foregroundColor(themes[self.theme.themeSettings].themeColor)
+                        }
+                    , content: {
+                        List {
+                            ForEach(themes, id: \.id) { theme in
+                                Button(action: {
+                                    self.theme.themeSettings = theme.id
+                                    UserDefaults.standard.set(self.theme.themeSettings, forKey: "Theme")
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "circle.fill")
+                                            .foregroundColor(theme.themeColor)
+                                        Text(theme.themeName)
+                                    }
+                                }) //: BUTTON
+                                .tint(.primary)
+                            }
+                        }
+                    }) //: SECTION 2
                     .padding(.vertical, 3)
                     
                     // MARK: - SECTION 3
@@ -134,6 +133,8 @@ struct SettingsView: View {
             .navigationBarTitle("Settings", displayMode: .inline)
             .background(Color("ColorBackground").edgesIgnoringSafeArea(.all))
         } //: NAVIGATION
+        .tint(themes[self.theme.themeSettings].themeColor)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

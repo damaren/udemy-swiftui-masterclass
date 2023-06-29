@@ -15,6 +15,9 @@
 		14B5A0412A44755E000939DC /* Todo_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B5A03F2A44755E000939DC /* Todo_App.xcdatamodeld */; };
 		14B5A0492A44757B000939DC /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B5A0482A44757B000939DC /* AddTodoView.swift */; };
 		14B5A04B2A44BBC8000939DC /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B5A04A2A44BBC8000939DC /* EmptyListView.swift */; };
+		14B9FEEA2A4DB8010091E0FA /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9FEE92A4DB8010091E0FA /* ThemeModel.swift */; };
+		14B9FEEC2A4DB8390091E0FA /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9FEEB2A4DB8390091E0FA /* ThemeData.swift */; };
+		14B9FEEE2A4DB87C0091E0FA /* ThemeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9FEED2A4DB87C0091E0FA /* ThemeSettings.swift */; };
 		14CF03952A4B132200DFD670 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF03942A4B132200DFD670 /* SettingsView.swift */; };
 		14CF03972A4B156400DFD670 /* FormRowStaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF03962A4B156400DFD670 /* FormRowStaticView.swift */; };
 		14CF03992A4B16DF00DFD670 /* FormRowLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF03982A4B16DF00DFD670 /* FormRowLinkView.swift */; };
@@ -40,6 +43,9 @@
 		14B5A0402A44755E000939DC /* Todo_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo_App.xcdatamodel; sourceTree = "<group>"; };
 		14B5A0482A44757B000939DC /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		14B5A04A2A44BBC8000939DC /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		14B9FEE92A4DB8010091E0FA /* ThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
+		14B9FEEB2A4DB8390091E0FA /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
+		14B9FEED2A4DB87C0091E0FA /* ThemeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettings.swift; sourceTree = "<group>"; };
 		14CF03942A4B132200DFD670 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		14CF03962A4B156400DFD670 /* FormRowStaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowStaticView.swift; sourceTree = "<group>"; };
 		14CF03982A4B16DF00DFD670 /* FormRowLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowLinkView.swift; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 		14B5A0332A44755D000939DC /* Todo App */ = {
 			isa = PBXGroup;
 			children = (
+				14B9FEE82A4DB7F20091E0FA /* Theme */,
 				14CF03AD2A4B22C600DFD670 /* Todo-App-Info.plist */,
 				14CF039A2A4B21F700DFD670 /* Icons */,
 				14B5A0472A44756C000939DC /* View */,
@@ -118,6 +125,16 @@
 				14E1354A2A4CA6FD009873BA /* ColorPickerContentView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		14B9FEE82A4DB7F20091E0FA /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				14B9FEE92A4DB8010091E0FA /* ThemeModel.swift */,
+				14B9FEEB2A4DB8390091E0FA /* ThemeData.swift */,
+				14B9FEED2A4DB87C0091E0FA /* ThemeSettings.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		14CF039A2A4B21F700DFD670 /* Icons */ = {
@@ -216,8 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CF03952A4B132200DFD670 /* SettingsView.swift in Sources */,
+				14B9FEEE2A4DB87C0091E0FA /* ThemeSettings.swift in Sources */,
 				14CF03972A4B156400DFD670 /* FormRowStaticView.swift in Sources */,
 				14CF03992A4B16DF00DFD670 /* FormRowLinkView.swift in Sources */,
+				14B9FEEC2A4DB8390091E0FA /* ThemeData.swift in Sources */,
+				14B9FEEA2A4DB8010091E0FA /* ThemeModel.swift in Sources */,
 				14B5A03E2A44755E000939DC /* Persistence.swift in Sources */,
 				14B5A0372A44755D000939DC /* ContentView.swift in Sources */,
 				14B5A04B2A44BBC8000939DC /* EmptyListView.swift in Sources */,
